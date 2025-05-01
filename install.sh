@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Установка зависимостей для Ktoya
 set -e  # Автоматически завершать скрипт при ошибках
 
 echo -e "\033[1;34m=== Установка системных зависимостей ===\033[0m"
@@ -12,10 +11,15 @@ sudo apt install -y \
     python3-pyaudio \
     libportaudio2 \
     wget \
-    unzip
+    unzip \
+    python3-full
+
+echo -e "\n\033[1;34m=== Создание виртуального окружения ===\033[0m"
+python3 -m venv venv
+source venv/bin/activate
 
 echo -e "\n\033[1;34m=== Установка Python-пакетов ===\033[0m"
-pip3 install --upgrade \
+pip install --upgrade \
     vosk \
     requests \
     sounddevice \
@@ -38,7 +42,9 @@ else
 fi
 
 echo -e "\n\033[1;34m=== Установка Silero TTS ===\033[0m"
-pip3 install git+https://github.com/snakers4/silero-models
+pip install git+https://github.com/snakers4/silero-models
 
 echo -e "\n\033[1;32m✔ Установка завершена успешно!\033[0m"
-echo "Для запуска проекта выполните: python3 main.py"
+echo "Для запуска проекта выполните:"
+echo "  source venv/bin/activate  # Активировать окружение"
+echo "  python3 main.py           # Запустить проект"
