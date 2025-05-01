@@ -1,18 +1,17 @@
 #!/bin/bash
 
-set -e  # Автоматически завершать скрипт при ошибках
+set -e
 
 echo -e "\033[1;34m=== Установка системных зависимостей ===\033[0m"
 sudo apt update
 sudo apt install -y \
     python3-pip \
-    python3-pyqt5 \
     python3-venv \
+    python3-pyqt5 \
     python3-pyaudio \
     libportaudio2 \
     wget \
-    unzip \
-    python3-full
+    unzip
 
 echo -e "\n\033[1;34m=== Создание виртуального окружения ===\033[0m"
 python3 -m venv venv
@@ -37,14 +36,12 @@ if [ ! -f "$MODEL_DIR/am-final.mdl" ]; then
         https://alphacephei.com/vosk/models/vosk-model-small-ru-0.22.zip
     unzip /tmp/vosk-model-small-ru.zip -d "$MODEL_DIR"
     rm /tmp/vosk-model-small-ru.zip
-else
-    echo "Модель Vosk уже установлена, пропускаем загрузку."
 fi
 
 echo -e "\n\033[1;34m=== Установка Silero TTS ===\033[0m"
 pip install git+https://github.com/snakers4/silero-models
 
-echo -e "\n\033[1;32m✔ Установка завершена успешно!\033[0m"
-echo "Для запуска проекта выполните:"
-echo "  source venv/bin/activate  # Активировать окружение"
-echo "  python3 main.py           # Запустить проект"
+echo -e "\n\033[1;32m✔ Установка завершена!\033[0m"
+echo "Для запуска:"
+echo "  source venv/bin/activate"
+echo "  python3 main.py"
