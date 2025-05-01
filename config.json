@@ -1,0 +1,8 @@
+{
+  "language": "ru",
+  "default_browser": "xdg-open",
+  "ai_model": "mistral",
+  "use_gui": true,
+  "voice_enabled": true,
+  "theme": "dark"
+}
